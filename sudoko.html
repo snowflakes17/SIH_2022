@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - A Simple JS Sudoko</title>
+  
+  
+  
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+body {
+    background: rgb(77,77,77);
+    background: radial-gradient(circle, rgba(77,77,77,1) 0%, rgba(38,38,38,1) 100%);
+}
+
+.header {
+    color: rgb(83, 194, 35);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+
+
+.Dashboard {
+    margin-top: 3%;
+    margin-bottom: 2%;
+    text-align: center;
+    font-family: Nunito;
+    color: whitesmoke;
+}
+
+
+
+.SudokoBoardContainer {
+    display: flex;
+    justify-content: center;
+    font-family: 'Nerko One', cursive;
+}
+
+
+
+
+#SudokoBoard {
+    height: 504px;
+    width: 567px;
+    display: inline;
+    display: flex;
+    border: solid black 2px;
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+
+.rowDivMainClass {
+    height: 100.2%;
+    width: 100%;
+    display: grid;
+    overflow: hidden;
+
+}
+
+.SmallBoxMainClass {
+    border: solid rgb(0, 0, 0) 0.3px;
+    height: 98%;
+    width: 100%;
+
+
+}
+
+#smallBox2,
+#smallBox5,
+#smallBox8 {
+    border-bottom: solid black 2px;
+
+}
+
+
+#rowDiv2,
+#rowDiv5 {
+    border-right: solid black 1.5px;
+
+}
+
+
+.InputsDesign {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    padding-left: 2px;
+    border: none;
+    font-size: 2.6rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Nerko One', cursive;
+
+}
+
+
+.InputsDesign:focus {
+    background-color: rgba(0, 0, 0, .1);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    transition: background-color 200ms ease-in;
+}
+
+
+
+p {
+    color: rgb(150, 150, 150);
+
+}
+
+
+input {
+    text-align: center;
+    font-size: 30px;
+    border: none;
+    background: none;
+    outline: none;
+    color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+
+}
+
+
+.btndiv {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+button {
+    border-radius: 6px;
+    display: inline-block;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    background-color: rgb(65, 65, 65);
+    color: rgb(204, 204, 204);
+    outline: none;
+    font-family: Nunito;
+}
+
+
+
+#footer,
+a {
+    color: black;
+    font-weight: bold;
+    margin-top: 45px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+.someClass {
+    background-color: red;
+}
+
+.my-class {
+    background-color: red;
+}
+
+#Footer {
+    margin-top: 60px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.719);
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    font-family: Nunito;
+    user-select: none;
+}
+.register {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #a85982, #b82b92);
+    background-image: -moz-linear-gradient(top, #f15050, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #812864, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #ff5353);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 21px;
+    padding: 12px 23px 15px 24px;
+    text-decoration: none;
+  }
+  
+  .register:hover{
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  .homepage {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 20px;
+    padding: 12px 5px 15px 8px;
+    text-decoration: none;
+  }
+  
+  .homepage:hover {
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  .gallery2 {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 21px;
+    padding: 12px 23px 15px 24px;
+    text-decoration: none;
+  }
+  
+  .gallery2:hover{
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  div.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+}
+div.navbar a {
+    color: white;
+    margin: -50px;
+  
+}
+div.navbar button{ 
+padding: 5px;
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <body>
+    <div class="navbar">
+        <img src="https://preview.pixlr.com/images/800wm/100/1/1001372063.jpg" width="60px" class="logo">
+        <a class="homepage">Home Page</a>
+        <a class="gallery2">Gallery</a>
+       
+            <a href="#" class="register">Register</a>
+            <a href="#" class="register">Login</a>
+            <a href="#" class="register">Contact Us</a>
+       
+    </div>
+      <div class="Dashboard">
+         <h1>A Simple JS Sudoko</h1>
+         <p>Click the <b>Sumbit!</b> button after the board is completed. </p>
+      </div>
+      <div class='SudokoBoardContainer'>
+         <div id="SudokoBoard">
+         </div>
+      </div>
+      <div class="btndiv">
+         <button id='CheckBoardBTN'>Submit!</button>
+         <button id='RestartBTN'>Restart</button>
+      </div>
+      
+   </body>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  
+      <script id="rendered-js" >
+let SudokoBoard = [
+[4, null, null, null, null, null, null, null, null],
+[9, null, 1, null, 7, null, null, null, null],
+[null, null, 8, null, 4, null, null, 5, 6],
+[6, null, 4, null, null, 7, null, null, null],
+[null, 8, 2, 9, 5, 1, 6, 7, null],
+[null, null, null, 8, null, null, 3, null, 5],
+[8, 1, null, null, 2, null, 9, null, null],
+[null, null, null, null, 1, null, 8, null, 3],
+[null, null, null, null, null, null, null, null, 2]];
+
+
+
+function writeInGameBoard() {
+  for (let i = 0; i < 9; i++) {if (window.CP.shouldStopExecution(0)) break;
+    let main = document.getElementById("SudokoBoard");
+    let rowDiv = document.createElement("div");
+    rowDiv.classList.add("rowDivMainClass"); //Big boxes class name
+    rowDiv.id = `rowDiv${i}`;
+    main.appendChild(rowDiv);
+    //smallBox Loop
+    let sudokoArrays = SudokoBoard[i];
+    for (let q = 0; q < 9; q++) {if (window.CP.shouldStopExecution(1)) break;
+      let smallBox = document.createElement("div");
+      smallBox.id = `smallBox${q}`;
+      smallBox.classList.add("SmallBoxMainClass"); //Small boxes class name
+      rowDiv.appendChild(smallBox);
+      //Create Inputs
+      let input = document.createElement("input");
+      input.classList.add("InputsDesign"); //Inputs class name
+      smallBox.appendChild(input);
+      input.value = sudokoArrays[q];
+      input.type = "number";
+      input.min = 1;
+      input.max = 9;
+      input.id = `InputOf-Col${i}-Row${q}`;
+      if (input.value) {
+        input.readOnly = true;
+      }
+    }window.CP.exitedLoop(1);
+  }window.CP.exitedLoop(0);
+}
+
+writeInGameBoard();
+
+
+///Check Input NUMBER Values
+let verifyNumberBigOrSmallNumbers = () => {
+  for (i = 0; i < 9; i++) {if (window.CP.shouldStopExecution(2)) break;
+    for (j = 0; j < 9; j++) {if (window.CP.shouldStopExecution(3)) break;
+      let InputNumberValues = document.getElementById(
+      `InputOf-Col${i}-Row${j}`);
+
+
+      if (
+      parseInt(InputNumberValues.value) > 9 ||
+      parseInt(InputNumberValues.value) <= 0)
+      {
+        alert("Please Type a Number between 1-9");
+        InputNumberValues.value = null;
+      }
+
+    }window.CP.exitedLoop(3);
+  }window.CP.exitedLoop(2);
+};
+
+
+function checkRowsAndColsDuplicates() {
+  let inputId = this.id;
+
+  // gets the row and col u have clicked
+  let smallBoxCol = inputId.charAt(11);
+  let smallBoxRow = inputId.charAt(inputId.length - 1);
+
+  // creating an 'array' of all existing inputs
+  let allInputs = document.querySelectorAll(".InputsDesign");
+
+  // running on the array and extracting the input elements in same row or column
+  let allInSameColAndRow = [];
+  for (let i = 0; i < allInputs.length; i++) {if (window.CP.shouldStopExecution(4)) break;
+    let currInputId = allInputs[i].id;
+    let currInputRow = currInputId.charAt(currInputId.length - 1);
+    let currInputCol = currInputId.charAt(11);
+    if (currInputRow === smallBoxRow || currInputCol === smallBoxCol)
+    allInSameColAndRow.push(allInputs[i]);
+  }
+
+  //WORKING FUNCTION
+
+  // running on the elements array and checking if the value is the same as the inserted value
+  window.CP.exitedLoop(4);for (let i = 0; i < allInSameColAndRow.length; i++) {if (window.CP.shouldStopExecution(5)) break;
+    let selectedInput = allInSameColAndRow[i];
+
+    if (+this.value === +selectedInput.value &&
+    this.id != selectedInput.id)
+    {
+      selectedInput.style.color = "#FF6262";
+      this.style.color = "#FF6262";
+
+      setTimeout(() => {
+        selectedInput.style.color = "white";
+        this.style.color = "white";
+        this.value = null;
+      }, 500);
+    }
+  }window.CP.exitedLoop(5);
+}
+
+//Mark all 9 boxes and give them unique class
+for (i = 0; i < 3; i++) {if (window.CP.shouldStopExecution(6)) break;
+  let a = this.value;
+  for (j = 0; j < 3; j++) {if (window.CP.shouldStopExecution(7)) break;
+    document.
+    getElementById(`InputOf-Col${i}-Row${j}`).
+    classList.add("BigBox-1");
+    document.
+    getElementById(`InputOf-Col${i + 3}-Row${j}`).
+    classList.add("BigBox-2");
+    document.
+    getElementById(`InputOf-Col${i + 6}-Row${j}`).
+    classList.add("BigBox-3");
+    document.
+    getElementById(`InputOf-Col${j}-Row${i + 3}`).
+    classList.add("BigBox-4");
+    document.
+    getElementById(`InputOf-Col${i + 3}-Row${j + 3}`).
+    classList.add("BigBox-5");
+    document.
+    getElementById(`InputOf-Col${i + 6}-Row${j + 3}`).
+    classList.add("BigBox-6");
+    document.
+    getElementById(`InputOf-Col${j}-Row${i + 6}`).
+    classList.add("BigBox-7");
+    document.
+    getElementById(`InputOf-Col${j + 3}-Row${i + 6}`).
+    classList.add("BigBox-8");
+    document.
+    getElementById(`InputOf-Col${j + 6}-Row${i + 6}`).
+    classList.add("BigBox-9");
+  }window.CP.exitedLoop(7);
+}window.CP.exitedLoop(6);
+
+function checkBoxDuplicates() {
+  let thisBoxClass = this.classList.value.charAt(20);
+  let allBoxInputs = document.querySelectorAll(`.BigBox-${+thisBoxClass}`);
+
+  for (i = 0; i < allBoxInputs.length; i++) {if (window.CP.shouldStopExecution(8)) break;
+    if (+this.value == +allBoxInputs[i].value &&
+    this.id != allBoxInputs[i].id &
+    this.value != null &
+    allBoxInputs[i] != null)
+    {
+      allBoxInputs[i].style.color = "#FF6262";
+      this.style.color = "#FF6262";
+
+      setTimeout(() => {
+        this.style.color = "white";
+        this.value = null;
+        allBoxInputs.forEach(item => {
+          item.style.color = "white";
+        });
+      }, 500);
+    }
+  }window.CP.exitedLoop(8);
+}
+
+
+//Evoke the functions above
+for (let i = 0; i < 9; i++) {if (window.CP.shouldStopExecution(9)) break;
+  for (let j = 0; j < 9; j++) {if (window.CP.shouldStopExecution(10)) break;
+    document.
+    getElementById(`InputOf-Col${i}-Row${j}`).
+    addEventListener("input", checkRowsAndColsDuplicates);
+    document.
+    getElementById(`InputOf-Col${i}-Row${j}`).
+    addEventListener("input", checkBoxDuplicates);
+    document.
+    getElementById(`InputOf-Col${i}-Row${j}`).
+    addEventListener("input", verifyNumberBigOrSmallNumbers);
+  }window.CP.exitedLoop(10);
+}window.CP.exitedLoop(9);
+
+
+document.getElementById('CheckBoardBTN').addEventListener('click', () => {
+
+  let checkForEmptySpaces = () => {
+    for (i = 0; i < 9; i++) {if (window.CP.shouldStopExecution(11)) break;
+      for (j = 0; j < 9; j++) {if (window.CP.shouldStopExecution(12)) break;
+        let SelectInputs = document.getElementById(`InputOf-Col${i}-Row${j}`);
+        let SelectInputsValues = parseInt(SelectInputs.value); //(inputIds.value = 1)
+        if (!SelectInputsValues) {
+          SelectInputs.style.backgroundColor = "rgba(0, 0, 0, .3)";
+          setTimeout(function () {
+            SelectInputs.style.backgroundColor = "transparent";
+          }, 1000);
+        }
+      }window.CP.exitedLoop(12);
+    }window.CP.exitedLoop(11);
+  };
+
+
+  //check if the board is full and valid it
+  let allInputsCells = document.querySelectorAll(".InputsDesign");
+
+  const inputsArr = [];
+
+  allInputsCells.forEach(cell => {
+    inputsArr.push(cell);
+  });
+
+  function checkAllInputs(item) {
+    if (item.value >= 1) return true;
+  }
+
+  function fullBoardValidation() {
+    if (inputsArr.every(checkAllInputs) == false) {
+      checkForEmptySpaces();
+    } else if (inputsArr.every(checkAllInputs) == true) {
+      alert("You have completed the board!");
+    }
+  }
+
+  fullBoardValidation();
+
+});
+
+
+document.getElementById('RestartBTN').addEventListener('click', () => {
+  for (i = 0; i < 9; i++) {if (window.CP.shouldStopExecution(13)) break;
+    for (j = 0; j < 9; j++) {if (window.CP.shouldStopExecution(14)) break;
+      let SelectInputs = document.getElementById(`InputOf-Col${i}-Row${j}`);
+      SelectInputs.value = SudokoBoard[i][j];
+    }window.CP.exitedLoop(14);
+  }window.CP.exitedLoop(13);
+
+
+});
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 

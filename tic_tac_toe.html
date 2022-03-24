@@ -1,0 +1,1038 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - Tic Tac Toe Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Happy+Monkey|Macondo" rel="stylesheet">
+
+
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+  
+<style>
+/*---------- VARIABLES -----------*/
+/*---------- MIXINS -----------*/
+body {
+  font-size: 3em;
+  font-family: "Architects Daughter", "Helvetica", "sans-serif";
+  color: #4d4d4d;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.well {
+  position: relative;
+  width: 420px;
+  height: 550px;
+  padding: 0px;
+  margin: 0px auto;
+  text-align: center;
+  background-color: #fff;
+  border: 40px solid #5F9EA0;
+  border-bottom: 100px solid #5F9EA0;
+  box-shadow: inset 0 0 20px #000000;
+  /*background-image:radial-gradient(#5F9EA0,white); */
+}
+
+button {
+  font-size: 0.8em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: -moz-radial-gradient(#5F9EA0, white);
+  background: -webkit-gradient(#5F9EA0, white);
+  background: -webkit-radial-gradient(#5F9EA0, white);
+  background: -o-radial-gradient(#5F9EA0, white);
+  background: -ms-radial-gradient(#5F9EA0, white);
+  background: radial-gradient(#5F9EA0, white);
+}
+button:active, button:focus, button:visited {
+  outline: none;
+}
+button:hover {
+  background: -moz-radial-gradient(white, #5F9EA0);
+  background: -webkit-gradient(white, #5F9EA0);
+  background: -webkit-radial-gradient(white, #5F9EA0);
+  background: -o-radial-gradient(white, #5F9EA0);
+  background: -ms-radial-gradient(white, #5F9EA0);
+  background: radial-gradient(white, #5F9EA0);
+  /* background-image: $radial-gradient-reverse;*/
+}
+
+.choose-game p {
+  padding: 40px 0px;
+}
+
+.choose-level {
+  display: none;
+}
+.choose-level p {
+  padding: 40px 0px 20px 0px;
+}
+.choose-level .radio {
+  position: static;
+}
+.choose-level .disabled {
+  color: #999999;
+}
+.choose-level input[type=radio] {
+  margin: 11px -20px 0;
+}
+.choose-level label {
+  font-size: 0.8em;
+  font-weight: 700;
+}
+.choose-level button {
+  position: absolute;
+  bottom: -60px;
+  left: 80px;
+}
+
+.players-names {
+  display: none;
+}
+.players-names input {
+  height: 30px;
+  margin-bottom: 30px;
+  font-size: 0.8em;
+}
+.players-names input:focus {
+  outline: none;
+  border: 2px solid #9fc5c6;
+}
+.players-names p {
+  padding: 30px 0px;
+}
+.players-names ::-webkit-input-placeholder {
+  font-size: 0.7em;
+}
+.players-names button {
+  position: absolute;
+  bottom: -60px;
+  left: 80px;
+}
+
+.choose-sign {
+  display: none;
+}
+.choose-sign p {
+  padding: 50px 0px 30px 0px;
+}
+.choose-sign button {
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+.choose-sign button:focus {
+  outeline: none;
+}
+
+.fields {
+  display: none;
+}
+
+.scores {
+  font-size: 0.8em;
+  color: #ffffcc;
+  padding-top: 10px;
+  display: none;
+}
+
+.player1-score {
+  float: left;
+  font-size: 0.7em;
+}
+
+.player2-score {
+  float: right;
+  font-size: 0.7em;
+}
+
+.message {
+  position: absolute;
+  background-image: linear-gradient(to bottom, transparent, transparent 35%, #ffffcc 35%, #ffffcc 65%, transparent 65%);
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  color: #333;
+  display: none;
+  z-index: 1;
+}
+.message p {
+  padding: 45% 0;
+}
+
+.turn-info {
+  position: absolute;
+  font-size: 0.6em;
+  font-weight: bold;
+  color: #ffffcc;
+  top: -35px;
+  display: none;
+}
+
+#reset {
+  position: absolute;
+  font-size: 0.6em;
+  padding: 0px 2px;
+  top: -35px;
+  right: 0px;
+}
+
+table {
+  margin: 0px auto;
+  font-size: 1.8em;
+  width: 100%;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  background: -moz-radial-gradient(#9fc5c6, transparent);
+  background: -webkit-gradient(#9fc5c6, transparent);
+  background: -webkit-radial-gradient(#9fc5c6, transparent);
+  background: -o-radial-gradient(#9fc5c6, transparent);
+  background: -ms-radial-gradient(#9fc5c6, transparent);
+  background: radial-gradient(#9fc5c6, transparent);
+  cursor: pointer;
+}
+
+.td-clicked {
+  background: -moz-radial-gradient(transparent, #9fc5c6);
+  background: -webkit-gradient(transparent, #9fc5c6);
+  background: -webkit-radial-gradient(transparent, #9fc5c6);
+  background: -o-radial-gradient(transparent, #9fc5c6);
+  background: -ms-radial-gradient(transparent, #9fc5c6);
+  background: radial-gradient(transparent, #9fc5c6);
+}
+
+td:not(:last-child) {
+  border-right: 5px solid #5F9EA0;
+}
+
+tr:not(:last-child) {
+  border-bottom: 5px solid #5F9EA0;
+}
+
+.td-winning-color {
+  background-color: #5F9EA0;
+  opacity: 1;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.7em;
+  width: 100%;
+  height: 30px;
+}
+footer a {
+  color: orange;
+}
+footer a:hover {
+  color: orange;
+}
+.register {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #a85982, #b82b92);
+    background-image: -moz-linear-gradient(top, #f15050, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #812864, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #ff5353);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 21px;
+    padding: 12px 23px 15px 24px;
+    text-decoration: none;
+  }
+  
+  .register:hover{
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  .homepage {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 20px;
+    padding: 12px 5px 15px 8px;
+    text-decoration: none;
+  }
+  
+  .homepage:hover {
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  .gallery2 {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 21px;
+    padding: 12px 23px 15px 24px;
+    text-decoration: none;
+  }
+  
+  .gallery2:hover{
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  div.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+}
+div.navbar a {
+    color: white;
+    margin: -50px;
+  
+}
+div.navbar button{ 
+padding: 5px;
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+}
+div.maincontent{
+    height: 750px;
+    background-image: url(https://i.pinimg.com/originals/d8/58/ca/d858ca0385a06cedec4b0e80cc9eaf50.gif);
+    background-size: 100%;
+    background-repeat: no-repeat;
+        
+}
+
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <html>
+  
+  <head>
+    <title>Tic Tac Toe Game</title>
+  </head>
+  
+  <body>
+    <div class="maincontent">
+    <div class="navbar">
+      <img src="https://preview.pixlr.com/images/800wm/100/1/1001372063.jpg" width="60px" class="logo">
+      <a class="homepage">Home Page</a>
+      <a class="gallery2">Gallery</a>
+     
+          <a href="#" class="register">Register</a>
+          <a href="#" class="register">Login</a>
+          <a href="#" class="register">Contact Us</a>
+     
+  </div>
+    
+    <audio><source src="https://www.dropbox.com/s/w4t8y43xi5mwku8/wining.mp3?raw=1"></source></audio>
+    <audio><source src="https://www.dropbox.com/s/gfv7klhzco8zez9/tie.mp3?raw=1"></source></audio>
+    <audio><source src="https://www.dropbox.com/s/1927v1q1mv45ny3/field_click.mp3?raw=1"></source></audio>
+
+    <h1>Tic Tac Toe Game</h1>
+    <div class = "well">
+      <div class = "turn-info"></div>
+      <button id = "reset">Reset</button>
+      <section class="message"><p></p></section>
+      
+      <section class="choose">
+      
+      <div class="choose-game">
+        <p>Choose number of players</p> 
+        <button class="choose-1">1 player</button>
+        <button class="choose-2">2 players</button>
+      </div>
+        
+      <div class="players-names">
+        <p>Enter players names</p> 
+        <input type="text" id="player1name" size="20" maxlength="10" placeholder = "Type Player 1 name" class="" val = "Player 1">
+        <input type="text" id="player2name" size="20" maxlength="10"placeholder = "Type Player 2 name"class="" val = "Player 2">
+        <button class="start-game">Start Game</button>
+      </div>
+        
+      <div class="choose-level">
+        <p>Chose game level:</p> 
+        <div class="btn-group">
+          <div class="radio">
+            <label><input type="radio" name="optionsRadios" id="easy" value="easy">Easy</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optionsRadios" id="hard" value="hard">Hard</label>
+          </div>
+       </div>
+        <button class="start-game">Start Game</button>
+     </div>
+        
+     <div class="choose-sign">
+       <p></p>
+        <button class="choose-x">X</button>
+        <button class="choose-o">O</button>
+        </div>
+      </section><!--end of choose-->
+      
+      <section class="fields">  
+        <table>
+          <tr>
+            <td id="1a" value = "1a">1a</td>
+            <td id="2a" value = "2a">2a</td>
+            <td id="3a" value = "3a">3a</td>
+          </tr>
+
+           <tr>
+            <td id="1b" value = "1b">1b</td>
+            <td id="2b" value = "2b">2b</td>
+            <td id="3b" value = "3b">3b</td>
+          </tr>
+
+           <tr>
+            <td id="1c" value = "1c">1c</td>
+            <td id="2c" value = "2c">2c</td>
+            <td id="3c" value = "3c">3c</td>
+          </tr>
+        </table>
+      </section><!--end of fields-->
+      
+      <section class="scores">
+        <p>0 : 0</p>
+        <div class="players-score">
+          <span class = "player1-score"></span>
+          <span class = "player2-score"></span>            
+          </div>
+      </section>
+      
+    </div><!--end of well-->
+   
+   
+  </body>
+</html>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+      <script id="rendered-js" >
+$(document).ready(function () {
+  doOnClick();
+}); //end of doc.ready func
+
+//Variables
+var reset = true;
+var choice = "1 player";
+var player1 = "X";
+var player2 = "O";
+var turn = player1;
+var player1Name = "You";
+var player2Name = "Computer";
+var player1Color;
+var player2Color;
+var player1Score = 0;
+var player2Score = 0;
+var lastScore;
+var turnMessage;
+var winingMessage;
+var playerBoard = ["1a", "2a", "3a",
+"1b", "2b", "3b",
+"1c", "2c", "3c"];
+var emptyFields = ["1a", "2a", "3a",
+"1b", "2b", "3b",
+"1c", "2c", "3c"];
+var fieldName;
+var winingCombinations = [["1a", "1b", "1c"], ["2a", "2b", "2c"], ["3a", "3b", "3c"], ["1a", "2b", "3c"], ["1c", "2b", "3a"]];
+
+
+var $field = $("td").text();
+var $showWiningInfo = $(".message");
+var $showTurnInfo = $(".turn-info");
+var $audioWin = $("audio")[0];
+var $audioTie = $("audio")[1];
+var $audioSign = $("audio")[2];
+
+
+//On.click func
+function doOnClick() {
+  $("#reset").on("click", function () {
+    resetGame();
+  });
+
+  $(".choose-1").on("click", function () {
+    $(".choose-game").css("display", "none");
+    $(".choose-level").css("display", "block");
+    choice = "1 player";
+  });
+
+  $(".choose-2").on("click", function () {
+    $(".choose-game").css("display", "none");
+    $(".players-names").css("display", "block");
+    choice = "2 player";
+  });
+
+  $(".start-game").on("click", function () {
+    startGame();
+    $(".players-names").css("display", "none");
+    $(".choose-level").css("display", "none");
+  });
+
+  $(".choose-x").on("click", function () {
+    player1 = "X";
+    console.log("You picked 'X'!");
+    $(".choose").css("display", "none");
+    chooseSign();
+    playAgain();
+  });
+
+  $(".choose-o").on("click", function () {
+    player1 = "O";
+    console.log("You picked 'O'!");
+    $(".choose").css("display", "none");
+    chooseSign();
+    playAgain();
+    if (player2Name === "Computer") {
+      setTimeout(computerTurn, 500);
+    }
+  });
+
+  $("td").on("click", function (e) {
+    fieldName = $(this).attr("id");
+    $audioSign.play();
+    if ($(this).hasClass("td-clicked")) {
+      $(this).preventDefault();
+    }
+    reset = false;
+
+    if (player2Name !== "Computer") {
+      if (turn === player1) {
+        if (playerTurn(player1)) {
+          return;
+        }
+      } else {
+        if (playerTurn(player2)) {
+          return;
+        }
+      }
+    } else {
+      if (turn === player1) {
+        if (playerTurn(player1) || emptyFields.length === 0) {
+          return;
+        } else {
+          setTimeout(computerTurn, 700);
+        }
+      }
+    }
+  });
+} //end of doOnClick func
+
+//Set players names and call x/o question
+function startGame() {
+  if (choice === "2 player") {
+    player1Name = $("input#player1name").val();
+    player2Name = $("input#player2name").val();
+    if (!player1Name) {
+      player1Name = "Player 1";
+    }
+    if (!player2Name) {
+      player2Name = "Player 2";
+    }
+  } //play with other player
+  else
+    {
+      player1Name = "You";
+      player2Name = "Computer";
+    } //play with computer 
+  return chooseSign();
+} //end of startGame
+
+//Display and set signs and whose turn is first (always player with 'X' sign)
+function chooseSign() {
+  $(".choose-sign").css("display", "block");
+  if (player1Name === "You") {
+    $(".choose-sign p").html(player1Name + " " + "pick first");
+  } else {
+    $(".choose-sign p").html(player1Name + " " + "picks first");
+  }
+
+  if (player1 === "X") {
+    player2 = "O";
+    turn = player1;
+  } else {
+    player2 = "X";
+    turn = player2;
+  }
+} //end of chooseSign func
+
+//Display playerBoard, score and whose turn is at the begining of the game
+function playAgain() {
+  $(".fields, .scores").css("display", "block");
+  $("td").html("");
+  $(".message").css("display", "none").html("");
+  emptyFields = ["1a", "2a", "3a",
+  "1b", "2b", "3b",
+  "1c", "2c", "3c"];
+  playerBoard = ["1a", "2a", "3a",
+  "1b", "2b", "3b",
+  "1c", "2c", "3c"];
+
+  $("td").css("color", "#333333");
+  $("td").removeClass("td-clicked");
+  $("td").removeClass("td-winning-color").removeClass("animated pulse");
+  scoreInfo();
+
+  // player who won score in last game goes first in next game, or
+  //If after game is drawn, player who won score in previous game goes first again, or
+  //If after first game is drawn, player who went first at the begining goes first again 
+  if (lastScore === player2 ||
+  winingMessage === "It's Tie!" && lastScore === player2 ||
+  !lastScore && winingMessage == "It's Tie!" && turn === player2) {
+
+    if (player2Name === "Computer") {
+      updateTurn(player1);
+      return setTimeout(computerTurn, 500);
+    } else {
+      return updateTurn(player1);
+    }
+  } else if (lastScore === player1 ||
+  winingMessage === "It's Tie!" && lastScore === player1 ||
+  !lastScore && winingMessage == "It's Tie!" && turn === player1) {
+    return updateTurn(player2);
+  } else {
+    return updateTurn(turn);
+  }
+} //end of playAgain func
+
+//Define players (players 1 and players2!=computer) moves, check if there is wining combination and update whose turn is, return new playerboard
+function playerTurn(player) {
+  if (emptyFields.includes(fieldName)) {
+    emptyFields.splice(emptyFields.indexOf(fieldName), 1);
+    playerBoard[playerBoard.indexOf(fieldName)] = player;
+
+    $("#" + fieldName).addClass("td-clicked").html(player);
+
+    if (player === "X") {
+      $("#" + fieldName).css("color", "red");
+    }
+
+    if (checkResult(player)) {
+      winInfo();
+      setTimeout(playAgain, 1500);
+      return true;
+    }
+    if (emptyFields.length === 0 && !checkResult(player)) {
+      winInfo();
+      setTimeout(playAgain, 1500);
+      return;
+    }
+
+    updateTurn(player);
+  }
+} //end of playerTurn func
+
+//Define computer moves, check if there is wining combination and update whose turn is, return new playerboard
+function computerTurn() {
+  reset = false;
+
+  if ($('input[id=easy]:checked').val()) {
+    fieldName = aiMove();
+  }
+  if ($('input[id=hard]:checked').val()) {
+    fieldName = aiPredictBestMove();
+  }
+  $audioSign.play();
+
+  emptyFields.splice(emptyFields.indexOf(fieldName), 1);
+  playerBoard[playerBoard.indexOf(fieldName)] = player2;
+  $("#" + fieldName).addClass("td-clicked").html(player2);
+  if (player2 === "X") {
+    $("#" + fieldName).css("color", "red");
+  }
+
+  if (checkResult(player2) || emptyFields.length === 0 && !checkResult(player2)) {
+    winInfo();
+    setTimeout(playAgain, 1500);
+    return;
+  }
+
+  updateTurn(player2);
+} // end of computerTurn
+
+//Checking for wining combination and update winingMessage 
+function checkResult(player) {
+
+  if ($("#1a").text() === player && $("#2a").text() === player && $("#3a").text() === player) {
+    $("#1a, #2a, #3a").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#1b").text() === player && $("#2b").text() === player && $("#3b").text() === player) {
+    $("#1b, #2b, #3b").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#1c").text() === player && $("#2c").text() === player && $("#3c").text() === player) {
+    $("#1c, #2c, #3c").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#1a").text() === player && $("#2b").text() === player && $("#3c").text() === player) {
+    $("#1a, #2b, #3c").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#3a").text() === player && $("#2b").text() === player && $("#1c").text() === player) {
+    $("#3a, #2b, #1c").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#1a").text() === player && $("#1b").text() === player && $("#1c").text() === player) {
+    $("#1a, #1b, #1c").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#2a").text() === player && $("#2b").text() === player && $("#2c").text() === player) {
+    $("#2a, #2b, #2c").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else
+  if ($("#3a").text() === player && $("#3b").text() === player && $("#3c").text() === player) {
+    $("#3a, #3b, #3c").addClass('td-winning-color').addClass("animated pulse");
+    return winnerUpdate(player);
+  } else {
+    winingMessage = "It's Tie!";
+    return false;
+  }
+
+} //end of checkResult
+
+//Update and display/show turn message  
+function updateTurn(player) {
+
+  //at the very begining of the game or after reset show who goes first func playAgain() call it
+  if (reset) {
+    if (player === player2) {
+      turnMessage = player2Name + " goes first !";
+      turnInfo();
+      return;
+    }
+
+    if (player === player1) {
+      if (player1Name === "You") {
+        turnMessage = player1Name + " go first !";
+      } else {
+        turnMessage = player1Name + " goes first !";
+      }
+    }
+    turnInfo();
+    return;
+  }
+
+  //Set next player turn alternately and show whose turn is
+  if (player === player1) {
+    turn = player2;
+    turnMessage = "It's " + player2Name + "'s turn !";
+  }
+
+  if (player === player2) {
+    turn = player1;
+    if (player1Name === "You") {
+      turnMessage = "It's " + player1Name + "r turn !";
+    } else {
+      turnMessage = "It's " + player1Name + "'s turn !";
+    }
+  }
+  return turnInfo();
+} //end of updateTurn func
+
+//Define wining message and update scores
+function winnerUpdate(player) {
+  lastScore = player;
+
+  if (player === player1) {
+    winingMessage = player1Name + " " + "Won!";
+    player1Score++;
+  }
+  if (player === player2) {
+    winingMessage = player2Name + " " + "Won!";
+    player2Score++;
+  }
+  scoreInfo();
+
+  return winingMessage;
+} // end of winnerUpdate func
+
+//Show updated current scores
+function scoreInfo() {
+  $(".scores p").html(player1Score + " : " + player2Score);
+  $(".player2-score").html(player2Name + "'s score: " + player2Score);
+  $(".player1-score").html(player1Name + "'s score: " + player1Score);
+
+  if (player1Name === "You") {
+    $(".player1-score").html(player1Name + "r score: " + player1Score);
+  }
+} //end of scoreInfo func
+
+//Show updated winner message
+function winInfo() {
+  $showWiningInfo.css("display", "block").html("<p>" + winingMessage + "</p>");
+  if (winingMessage === "It's Tie!") {
+    $audioTie.play();
+  } else {
+    $audioWin.play();
+  }
+  $showTurnInfo.css("display", "none");
+} //end of winInfo func
+
+//Show updated turn message
+function turnInfo() {
+  $showTurnInfo.css("display", "block").html(turnMessage);
+} //end of turnInfo func
+
+//Reset all value and retur on very begining
+function resetGame() {
+
+  reset = true;
+  player1Score = 0;
+  player2Score = 0;
+  lastScore = "";
+  emptyFields = ["1a", "2a", "3a",
+  "1b", "2b", "3b",
+  "1c", "2c", "3c"];
+  playerBoard = ["1a", "2a", "3a",
+  "1b", "2b", "3b",
+  "1c", "2c", "3c"];
+  winingMessage = "";
+  turnMessage = "";
+  player1Name = "You";
+  player2Name = "Computer";
+  $("input#player1name").val("");
+  $("input#player2name").val("");
+
+  $('.btn-group :radio').prop('checked', false);
+
+  $("td").removeClass("td-winning-color");
+  $("td").removeClass("td-clicked");
+  $(".choose,  .choose-game").css("display", "block");
+  $(".fields, .scores, .turn-info, .message, .choose-sign, .choose-level, .players-names ").css("display", "none");
+} //end of resetGame func
+
+//AI Predict and define computer moves
+
+//AI checking for wining combination
+function aiCheckWinner(player, board) {
+  if (board[0] == player && board[1] == player && board[2] == player ||
+  board[3] == player && board[4] == player && board[5] == player ||
+  board[6] == player && board[7] == player && board[8] == player ||
+  board[0] == player && board[3] == player && board[6] == player ||
+  board[1] == player && board[4] == player && board[7] == player ||
+  board[2] == player && board[5] == player && board[8] == player ||
+  board[0] == player && board[4] == player && board[8] == player ||
+  board[2] == player && board[4] == player && board[6] == player) {
+    return true;
+  }
+} //end of aiCheckScor func
+
+//1. AI Predict and define computer;s moves - level Easy
+function aiMove() {
+  var fakeEmptyFields = emptyFields.slice();
+  var fakeBoard = playerBoard.slice();
+  var possibleMoveAI;
+
+  //Check if AI can win the game
+  function aiWin() {
+    for (var i = 0; i < emptyFields.length; i++) {if (window.CP.shouldStopExecution(0)) break;
+      possibleMoveAI = emptyFields[i];
+      fakeBoard = playerBoard.slice();
+      fakeBoard[playerBoard.indexOf(possibleMoveAI)] = player2;
+      if (aiCheckWinner(player2, fakeBoard)) {
+        return possibleMoveAI;
+      } else {
+        possibleMoveAI = false;
+      }
+    } //end of for loop
+    window.CP.exitedLoop(0);} //end of aiWin func
+
+  //Check if AI can block the player
+  function aiBlock() {
+    for (var i = 0; i < emptyFields.length; i++) {if (window.CP.shouldStopExecution(1)) break;
+      var possibleMoveHuman = emptyFields[i];
+      fakeBoard = playerBoard.slice();
+      fakeBoard[playerBoard.indexOf(possibleMoveHuman)] = player1;
+      if (aiCheckWinner(player1, fakeBoard)) {
+        possibleMoveAI = possibleMoveHuman;
+        return possibleMoveHuman;
+      } else {
+        possibleMoveAI = false;
+      }
+    } //end of for loop
+    window.CP.exitedLoop(1);} //end of aiBlock func
+
+  if (aiWin()) {
+    return possibleMoveAI;
+  } else if (aiBlock()) {
+    return possibleMoveAI;
+  } else {
+    possibleMoveAI = emptyFields[Math.floor(Math.random() * emptyFields.length)];
+    return possibleMoveAI;
+  }
+} //end of aiMove func
+
+//2. AI Predict and define computer's moves - level Hard 
+function aiPredictBestMove() {
+  var fc = 0;
+  //create board for manipulating and replace empty spaces with index numbers
+  var fakeBoard = playerBoard.slice();
+  for (var i = 0; i < fakeBoard.length; i++) {if (window.CP.shouldStopExecution(2)) break;
+    if (fakeBoard[i] !== "X" && fakeBoard[i] !== "O") {
+      fakeBoard[i] = i;
+    }
+  }window.CP.exitedLoop(2);
+  var aiPlayer = player2;
+  var huPlayer = player1;
+
+  //Define empty spaces/indexes in New board arr
+  function getEmptyIndexies(board) {
+    return board.filter(s => s !== "X" && s !== "O");
+  } //end of getEmptyIndexie func
+
+
+  // The main minimax function
+  function minimax(newBoard, player) {
+    //add one to function calls
+    fc++;
+    //available spots
+    var availSpots = getEmptyIndexies(newBoard);
+
+    // checks for the terminal states such as win, lose, and tie 
+    //and returning a value accordingly
+
+    if (aiCheckWinner(huPlayer, newBoard)) {
+      return { score: -10 };
+    } else if (aiCheckWinner(aiPlayer, newBoard)) {
+      return { score: 10 };
+    } else if (availSpots.length === 0) {
+      return { score: 0 };
+    }
+
+    // an array to collect all the objects
+    var moves = [];
+
+    // loop through available spots
+    for (var i = 0; i < availSpots.length; i++) {if (window.CP.shouldStopExecution(3)) break;
+      //create an object for each and store the index of that spot 
+      var move = {};
+      move.index = newBoard[availSpots[i]];
+
+      // set the empty spot to the current player
+      newBoard[availSpots[i]] = player;
+
+      /*collect the score resulted from calling minimax 
+        on the opponent of the current player*/
+      if (player == aiPlayer) {
+        var result = minimax(newBoard, huPlayer);
+        move.score = result.score;
+      } else {
+        var result = minimax(newBoard, aiPlayer);
+        move.score = result.score;
+      }
+
+      // reset the spot to empty
+      newBoard[availSpots[i]] = move.index;
+
+      // push the object to the array
+      moves.push(move);
+    }
+
+    // if it is the computer's turn loop over the moves and choose the move with the highest score
+    window.CP.exitedLoop(3);var bestMove;
+    if (player === aiPlayer) {
+      var bestScore = -10000;
+      for (var i = 0; i < moves.length; i++) {if (window.CP.shouldStopExecution(4)) break;
+        if (moves[i].score > bestScore) {
+          bestScore = moves[i].score;
+          bestMove = i;
+        }
+      }window.CP.exitedLoop(4);
+    } else {
+
+      // else loop over the moves and choose the move with the lowest score
+      var bestScore = 10000;
+      for (var i = 0; i < moves.length; i++) {if (window.CP.shouldStopExecution(5)) break;
+        if (moves[i].score < bestScore) {
+          bestScore = moves[i].score;
+          bestMove = i;
+        }
+      }window.CP.exitedLoop(5);
+    }
+
+    // return the chosen move (object) from the moves array
+    return moves[bestMove];
+  } //end of minimax func
+
+  var bestSpot = minimax(fakeBoard, aiPlayer);
+  return playerBoard[bestSpot.index];
+} //end of aiPredictBestMove func;
+//# sourceURL=pen.js
+    </script>
+
+  
+</div>
+</body>
+
+</html>
+ 

@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  <title>CodePen - Memory with Vue.js</title>
+  
+  
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css'>
+  
+<style>
+body {
+  background: oldlace;
+  padding: 20px;
+  font-family: Helvetica, Arial, Sans-Serif;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 100px);
+  grid-auto-rows: 100px;
+  grid-gap: 15px;
+  justify-content: center;
+  perspective: 800px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+i.fas {
+  font-size: 40px;
+  color: #333;
+}
+
+.victoryState {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 5px 5px 0 0 #333;
+  cursor: pointer;
+  animation: flipUp 0.5s forwards;
+}
+.card i {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.card.down {
+  animation: flipDown 0.5s forwards;
+}
+.card.down i {
+  opacity: 0;
+}
+.card.matched {
+  animation: matching 0.3s forwards;
+}
+
+@keyframes flipDown {
+  0% {
+    background: #fff;
+    transform: rotateY(0deg);
+    box-shadow: 5px 5px 0 0 #333;
+  }
+  100% {
+    background: #73847f;
+    transform: rotateY(180deg);
+    box-shadow: -5px 5px 0 0 #333;
+  }
+}
+@keyframes flipUp {
+  0% {
+    background: #73847f;
+    transform: rotateY(180deg);
+    box-shadow: -5px 5px 0 0 #333;
+  }
+  100% {
+    background: #fff;
+    transform: rotateY(0deg);
+    box-shadow: 5px 5px 0 0 #333;
+  }
+}
+@keyframes matching {
+  0% {
+    background: #fff;
+  }
+  100% {
+    background: lightpink;
+  }
+}
+.register {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #a85982, #b82b92);
+    background-image: -moz-linear-gradient(top, #f15050, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #812864, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #ff5353);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 21px;
+    padding: 12px 23px 15px 24px;
+    text-decoration: none;
+  }
+  
+  .register:hover{
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  .homepage {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 20px;
+    padding: 12px 5px 15px 8px;
+    text-decoration: none;
+  }
+  
+  .homepage:hover {
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  .gallery2 {
+    background: #f558a9;
+    background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+    background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+    background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+    -webkit-border-radius: 50;
+    -moz-border-radius: 50;
+    border-radius: 50px;
+    font-family: Arial;
+    color: #fcfcfc;
+    font-size: 21px;
+    padding: 12px 23px 15px 24px;
+    text-decoration: none;
+  }
+  
+  .gallery2:hover{
+    background: #f53152;
+    background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+    background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+    text-decoration: none;
+  }
+  div.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+}
+div.navbar a {
+    color: white;
+    margin: -50px;
+  
+}
+div.navbar button{ 
+padding: 5px;
+    border-radius: 8px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+}
+div.maincontent{
+    height: 1000px;
+    background-image: url(https://i.pinimg.com/originals/69/f3/0a/69f30a9203334871de8306ff6c477c59.gif);
+    background-size: 100%;
+    background-repeat: no-repeat;
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+<div class="maincontent">
+    <div class="navbar">
+        <img src="https://preview.pixlr.com/images/800wm/100/1/1001372063.jpg" width="60px" class="logo">
+        <a class="homepage">Home Page</a>
+        <a class="gallery2">Gallery</a>
+       
+            <a href="#" class="register">Register</a>
+            <a href="#" class="register">Login</a>
+            <a href="#" class="register">Contact Us</a>
+       
+    </div>
+    <br><br><br><br><br><br><br>
+
+  <div id="app">
+  <p class="victoryState" v-if="victory">Done! <button v-on:click="cardsShuffle" class="btn btn-primary">Refresh ?</button></p>
+  <div v-for="(card, index) in cards" :key="index" :class="[{'down': card.down && !card.matched, 'up': !card.down, 'matched': card.matched}, ' card']" v-on:click="handleClick(card)">
+    <i :class="'fas ' + card.icon"></i>
+  </div>
+</div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17-beta.0/vue.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js'></script>
+      <script id="rendered-js" >
+// List of font awesome codes used as illustrations, can be modified
+const icons = [
+'fa-kiwi-bird',
+'fa-chess',
+'fa-frog',
+'fa-camera-retro',
+'fa-plug',
+'fa-anchor',
+'fa-birthday-cake',
+'fa-cube',
+'fa-dice',
+'fa-bug',
+'fa-cut',
+'fa-gem'];
+
+
+// Duplicate elements of an array
+const duplicate = arr => {
+  return arr.concat(arr).sort();
+};
+
+// Check if two cards are a match
+const checkMatch = icons => {
+  if (icons[0] === icons[1]) {
+    console.log("it's a match");
+    return true;
+  }
+};
+
+new Vue({
+  el: "#app",
+  data: {
+    cards: _.range(0, icons.length * 2),
+    runing: false },
+
+  methods: {
+    // Create cards array based on icons, shuffle them
+    cardsShuffle() {
+      // prep objects
+      this.cards.forEach((card, index) => {
+        this.cards[index] = {
+          icon: '',
+          down: true,
+          matched: false };
+
+      });
+      // input every icon two times
+      icons.forEach((icon, index) => {
+        this.cards[index].icon = icon;
+        this.cards[index + icons.length].icon = icon;
+      });
+      this.cards = _.shuffle(this.cards);
+    },
+    handleClick(cardClicked) {
+      if (!this.runing) {
+        // turn card up
+        if (!cardClicked.matched && this.cardCount.cardsUp < 2) {
+          cardClicked.down = false;
+        }
+        // when two cards are up, check if they match or turn them down
+        if (this.cardCount.cardsUp === 2) {
+          this.runing = true;
+          setTimeout(() => {
+            let match = checkMatch(this.cardCount.icons);
+            this.cards.forEach(card => {
+              if (match && !card.down && !card.matched) {
+                card.matched = true;
+              } else {
+                card.down = true;
+              }
+            });
+            this.runing = false;
+          }, 1500);
+        }
+      }
+    } },
+
+  mounted() {
+    this.cardsShuffle();
+  },
+  computed: {
+    // make a count of cards up and cards matched, keep icons of cards to check in array
+    cardCount: function () {
+      let cardUpCount = 0;
+      let cardMatchedCount = 0;
+      let icons = [];
+      this.cards.forEach(card => {
+        if (!card.down && !card.matched) {
+          cardUpCount++;
+          icons.push(card.icon);
+        }
+        if (card.matched) {
+          cardMatchedCount++;
+        }
+      });
+      return {
+        cardsUp: cardUpCount,
+        cardsMatched: cardMatchedCount,
+        icons: icons };
+    },
+    // update victory state
+    victory: function () {
+      if (this.cardCount.cardsMatched === this.cards.length) {
+        return true;
+      }
+    } } });
+//# sourceURL=pen.js
+    </script>
+
+  
+</div>
+</body>
+
+</html>
+ 

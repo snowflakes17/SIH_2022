@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    body {
+        margin:0;
+        background: url("https://www.mintpro.in/wp-content/uploads/2018/09/Untitled-design-1-min-800x500.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .box {
+        position: absolute;
+        margin: 150px 500px 750px 580px;
+        height: 725px;
+        width: 450px;
+        border-radius: 25px;
+        background-color: black ;
+        opacity: .8;
+        box-shadow: 0 25px 20px 0 rgba(0,0,0,0.24),0 20px 55px 0 rgba(0,0,0,0.19);
+    }
+    .des {
+        position: relative;
+        height: 30px;
+        width: 310px;
+        font-size: 17px;
+        font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+        color : white; 
+        background: transparent;
+        transition-duration: 0.8s;
+        border: 2px solid transparent;
+        border-bottom: 1px solid #8BC34A;
+        margin-top: 0;
+        margin: 10px;
+        padding: 15px;
+    }
+    .des:focus {
+        border-bottom: 1px solid black;
+    }
+    button {
+        position: relative;
+        text-align: center;
+        font-size: 20px;
+        text-align:center;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);
+        margin: 50px 50px 50px 20px;
+        padding: 9px 130px;
+        background-color: #8BC34A;
+        color: #F0F8FF;
+        transition-duration: 0.5s;
+        border: 2px solid transparent;
+        border-radius: 50px;
+        cursor: pointer;
+    }
+    button:hover {
+        color: #8BC34A;
+        background-color: #F0F8FF;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+    button:focus {
+        color: #000000;
+    }
+    .ss {
+        position: relative;
+        margin: 0 auto;
+        display: block;
+        top: -70px;
+        border-radius: 100%;
+    }
+    .register {
+  background: #f558a9;
+  background-image: -webkit-linear-gradient(top, #a85982, #b82b92);
+  background-image: -moz-linear-gradient(top, #f15050, #b82b92);
+  background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -o-linear-gradient(top, #812864, #b82b92);
+  background-image: linear-gradient(to bottom, #f558a9, #ff5353);
+  -webkit-border-radius: 50;
+  -moz-border-radius: 50;
+  border-radius: 50px;
+  font-family: Arial;
+  color: #fcfcfc;
+  font-size: 21px;
+  padding: 12px 23px 15px 24px;
+  text-decoration: none;
+}
+
+.register:hover {
+  background: #f53152;
+  background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+  text-decoration: none;
+}
+.homepage {
+  background: #f558a9;
+  background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+  background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+  -webkit-border-radius: 50;
+  -moz-border-radius: 50;
+  border-radius: 50px;
+  font-family: Arial;
+  color: #fcfcfc;
+  font-size: 20px;
+  padding: 12px 5px 15px 8px;
+  text-decoration: none;
+}
+
+.homepage:hover {
+  background: #f53152;
+  background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+  text-decoration: none;
+}
+.gallery2 {
+  background: #f558a9;
+  background-image: -webkit-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -moz-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -ms-linear-gradient(top, #f558a9, #b82b92);
+  background-image: -o-linear-gradient(top, #f558a9, #b82b92);
+  background-image: linear-gradient(to bottom, #f558a9, #b82b92);
+  -webkit-border-radius: 50;
+  -moz-border-radius: 50;
+  border-radius: 50px;
+  font-family: Arial;
+  color: #fcfcfc;
+  font-size: 21px;
+  padding: 12px 23px 15px 24px;
+  text-decoration: none;
+}
+
+.gallery2:hover {
+  background: #f53152;
+  background-image: -webkit-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -moz-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -ms-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: -o-linear-gradient(top, #f53152, #7d4b6c);
+  background-image: linear-gradient(to bottom, #f53152, #7d4b6c);
+  text-decoration: none;
+}
+div.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+div.navbar a {
+  color: white;
+  margin: -50px;
+}
+div.navbar button {
+  padding: 5px;
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+}
+.logo {
+  border-radius: 60%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="navbar">
+            <img
+              src="https://preview.pixlr.com/images/800wm/100/1/1001372063.jpg"
+              width="60px"
+              class="logo"
+            />
+            <a class="homepage">Home Page</a>
+            <a class="gallery2">Gallery</a>
+      
+            <a href="#" class="register">Register</a>
+            <a href="#" class="register">Login</a>
+            <a href="#" class="register">Contact Us</a>
+          </div>
+    <div class="box">
+    <img src="https://i.pinimg.com/736x/fc/ea/b4/fceab4432793b19697b27de9fa963e46.jpg" style="height:150px;width:150px;" class="ss" />
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Name" class="des" /><br>
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Username" class="des" /><br>
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Age" class="des" /><br> 
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Gender" class="des" /><br>
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Aadhar Card Number" class="des" /><br>
+        
+        <button type="submit value="submit">Register</button>
+    </div>
+    </body>
+</html>
