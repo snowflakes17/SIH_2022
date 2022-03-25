@@ -63,9 +63,9 @@ div.details {
 div.details button {
     padding: 20px;
     border-radius: 8px;
-    border: 2px solid rgb(255, 255, 255);
-    background-color: white;
-    color: darkturquoise;
+    
+    
+    color: rgb(226, 238, 238);
 }
 div.details button:hover{
 
@@ -81,6 +81,7 @@ div.details button:hover{
 	width: 100%;
 	text-align: center;
 	position: absolute;
+	
 }
 
 .page_categories {
@@ -131,6 +132,7 @@ div.details button:hover{
 	background: -webkit-linear-gradient(to right, #333399, #ff00cc);  
 	background: linear-gradient(to right, #333399, #ff00cc); 
 	box-shadow: 0 10px 50px violet;
+	
 }
 .racing_games {
 	background: #56ab2f; 
@@ -295,7 +297,7 @@ div.details button:hover{
 }
 
 .wrapper{
-    padding-top: 30%;
+    padding-top: 22%;
 }
 
 
@@ -329,6 +331,7 @@ div.details button:hover{
     font-size: 20px;
     padding: 12px 5px 15px 8px;
     text-decoration: none;
+	cursor: grab;
   }
   
   .homepage:hover {
@@ -355,6 +358,7 @@ div.details button:hover{
     font-size: 21px;
     padding: 12px 23px 15px 24px;
     text-decoration: none;
+	cursor: grab;
   }
   
   .gallery2:hover{
@@ -419,5 +423,19 @@ div.details button:hover{
 	background-image: linear-gradient(to bottom, #b82b92, #7d4b6c);
 	text-decoration: none;
   }
-
-
+  
+#hemlo{
+	text-decoration: none;
+	color: blanchedalmond;
+}
+#hemlo1{
+	text-decoration: none;
+	color: blanchedalmond;
+}
+#hemlo2{
+    text-decoration: none;
+	color: blanchedalmond; 
+}
+#aboutus{
+	margin: 0px 650px ;
+}
