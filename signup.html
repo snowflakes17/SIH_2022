@@ -63,6 +63,7 @@
     }
     button:focus {
         color: #000000;
+         text-decoration: none;
     }
     .ss {
         position: relative;
@@ -171,6 +172,14 @@ div.navbar button {
   margin-bottom: 5px;
   margin-top: 5px;
 }
+button {
+   text-decoration:none ;
+}
+#kuchbhi {
+  text-decoration: none;
+  color: #F0F8FF;
+ 
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
@@ -181,12 +190,12 @@ div.navbar button {
               width="60px"
               class="logo"
             />
-            <a class="homepage">Home Page</a>
+            <a href="mainpage.html" class="homepage">Home</a>
             <a class="gallery2">Gallery</a>
       
-            <a href="#" class="register">Register</a>
-            <a href="#" class="register">Login</a>
-            <a href="#" class="register">Contact Us</a>
+            <a href="signup.html" class="register">Register</a>
+                    <a href="logintemplate.html" class="register">Login</a>
+                    <a href="contactus.html" class="register">Contact Us</a>
           </div>
     <div class="box">
     <img src="https://i.pinimg.com/736x/fc/ea/b4/fceab4432793b19697b27de9fa963e46.jpg" style="height:150px;width:150px;" class="ss" />
@@ -196,7 +205,7 @@ div.navbar button {
         <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Gender" class="des" /><br>
         <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Aadhar Card Number" class="des" /><br>
         
-        <button type="submit value="submit">Register</button>
+        <button type="submit value="submit"><a href="mainpage.html" id="kuchbhi">Register</a></button>
     </div>
     </body>
 </html>
