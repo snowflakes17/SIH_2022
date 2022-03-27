@@ -118,7 +118,8 @@ a {
     opacity: 0.7;
   }
   .row {
-    margin: 0 -5px;
+    margin: 0px 10px 0px 200px;
+    box-sizing: border-box;
   }
   .row:after {
     content: "";
@@ -258,4 +259,12 @@ padding: 5px;
     border: 2px solid white;
     background-color: transparent;
     color: white;
+}
+#team{
+  font-family: 'Brush Script MT', cursive;
+  font-size: 50px;
+}
+.contact2{
+  text-decoration: none;
+  color: #fcfcfc;
 }

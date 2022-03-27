@@ -37,7 +37,7 @@ div.maincontent{
 }
 
 
-div.navbar{
+ div.navbar{
     display: flex;
     justify-content: space-around;
     align-items: center;
