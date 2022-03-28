@@ -165,7 +165,7 @@ div.details button:hover{
 .popular-card {
 	width: 190px;
 	height: 300px;
-	margin: 10px;
+	margin: 34px;
 	background: #000;
 	border-radius: 4px;
 	transition: 200ms ease-in-out;
@@ -199,8 +199,8 @@ div.details button:hover{
 }
 .racing {
 	background: #56ab2f; 
-	background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  
-	background: linear-gradient(to right, #a8e063, #56ab2f);
+	background: -webkit-linear-gradient(to right, #383b02, #56ab2f);  
+	background: linear-gradient(to right, #848604, #E8E46E);
 	box-shadow: 0 10px 40px lightgreen;
 }
 .girls {
@@ -212,8 +212,8 @@ div.details button:hover{
 
 .RBG {
 	background: #00C9FF; 
-	background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);
-	background: linear-gradient(to right, #92FE9D, #00C9FF); 
+	background: -webkit-linear-gradient(to right, #92FE9D, #000405);
+	background: linear-gradient(to right, #F68989, #9C0F48); 
 	box-shadow: 0 0px 50px aqua;
 }
 .img_container {
@@ -329,7 +329,7 @@ div.details button:hover{
     font-family: Arial;
     color: #fcfcfc;
     font-size: 20px;
-    padding: 12px 5px 15px 8px;
+    padding: 12px 20px 15px 20px;
     text-decoration: none;
 	cursor: grab;
   }
@@ -443,4 +443,8 @@ div.details button:hover{
 #aboutus{
 	margin: 0px 650px ;
 	text-decoration: none;
+}
+#yo1{
+	margin: 60px 630px 0px;
+	font-size: 30px;
 }
