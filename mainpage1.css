@@ -13,7 +13,7 @@ div.maincontent{
         
 }
 .logo{
-    border-radius: 10%;
+    border-radius: 0%;
     margin-bottom: 5px;
     margin-top: 5px;
 }
@@ -56,7 +56,7 @@ padding: 5px;
     color: white;
 }
 div.details {
-    padding-top: 200px;
+    padding-top: -12px;
     text-align: center;
     color: white;
 }
@@ -297,7 +297,7 @@ div.details button:hover{
 }
 
 .wrapper{
-    padding-top: 22%;
+    padding-top: 18%;
 }
 
 
@@ -308,7 +308,7 @@ div.details button:hover{
 	height: 50px;
 	bottom: 9px;
 	right: 20px;
-	display:block;
+	display: block;
 	position:fixed;
 	border-radius:50%;
 	z-index:999;
@@ -444,7 +444,10 @@ div.details button:hover{
 	margin: 0px 650px ;
 	text-decoration: none;
 }
+.old{
+	height: 130px;
+}
 #yo1{
-	margin: 60px 630px 0px;
-	font-size: 30px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; 
+    color: #FFCBA4;
 }
