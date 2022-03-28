@@ -217,6 +217,34 @@ div.maincontent{
 .homepage{
   padding: 12px 20px 15px 20px;
 }
+.btn {
+  background: #1c5196;
+  background-image: -webkit-linear-gradient(top, #1c5196, #3a9682);
+  background-image: -moz-linear-gradient(top, #1c5196, #3a9682);
+  background-image: -ms-linear-gradient(top, #1c5196, #3a9682);
+  background-image: -o-linear-gradient(top, #1c5196, #3a9682);
+  background-image: linear-gradient(to bottom, #1c5196, #3a9682);
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 26px;
+  padding: 13px 25px 15px 25px;
+  text-decoration: none;
+  margin: 70px 0px 0px 1100px;
+}
+
+.btn:hover {
+  background: #2f228f;
+  background-image: -webkit-linear-gradient(top, #2f228f, #46db84);
+  background-image: -moz-linear-gradient(top, #2f228f, #46db84);
+  background-image: -ms-linear-gradient(top, #2f228f, #46db84);
+  background-image: -o-linear-gradient(top, #2f228f, #46db84);
+  background-image: linear-gradient(to bottom, #2f228f, #46db84);
+  text-decoration: none;
+  color: rgb(250, 244, 244);
+}
 </style>
 
   <script>
@@ -252,6 +280,9 @@ div.maincontent{
   <div v-for="(card, index) in cards" :key="index" :class="[{'down': card.down && !card.matched, 'up': !card.down, 'matched': card.matched}, ' card']" v-on:click="handleClick(card)">
     <i :class="'fas ' + card.icon"></i>
   </div>
+</div>
+<div>
+  <a href="firework3.html" class="btn">Done</a>
 </div>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
 

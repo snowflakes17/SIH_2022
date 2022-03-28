@@ -166,3 +166,31 @@ div.navbar button {
 .homepage{
   padding: 12px 20px 15px 20px;
 }
+.btn {
+  background: #1c5196;
+  background-image: -webkit-linear-gradient(top, #1c5196, #3a9682);
+  background-image: -moz-linear-gradient(top, #1c5196, #3a9682);
+  background-image: -ms-linear-gradient(top, #1c5196, #3a9682);
+  background-image: -o-linear-gradient(top, #1c5196, #3a9682);
+  background-image: linear-gradient(to bottom, #1c5196, #3a9682);
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 26px;
+  padding: 13px 25px 15px 25px;
+  text-decoration: none;
+  margin: 0px 100px 60px 800px;
+}
+
+.btn:hover {
+  background: #2f228f;
+  background-image: -webkit-linear-gradient(top, #2f228f, #46db84);
+  background-image: -moz-linear-gradient(top, #2f228f, #46db84);
+  background-image: -ms-linear-gradient(top, #2f228f, #46db84);
+  background-image: -o-linear-gradient(top, #2f228f, #46db84);
+  background-image: linear-gradient(to bottom, #2f228f, #46db84);
+  text-decoration: none;
+  color: rgb(250, 244, 244);
+}
