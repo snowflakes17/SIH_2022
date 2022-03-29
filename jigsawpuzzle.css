@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   border: none;
-  background-image: linear-gradient(to right, #93dff1, #fc8cd6);
+  background-image: linear-gradient(to right, #90E0EF, #00B4D8,#0066b2,#0E49B5);
 }
 #forPuzzle {
   border: none;
@@ -22,7 +22,7 @@ body {
 #divmenu.open {
   width: 120px;
   height: 100px;
-  background-color: rgba(235, 25, 10, 0.7);
+  background-color: linear-gradient(to right, #90E0EF, #00B4D8,#0066b2,#0E49B5);
   z-index: 50001;
 }
 
@@ -168,11 +168,11 @@ div.navbar button {
 }
 .btn {
   background: #1c5196;
-  background-image: -webkit-linear-gradient(top, #1c5196, #3a9682);
-  background-image: -moz-linear-gradient(top, #1c5196, #3a9682);
-  background-image: -ms-linear-gradient(top, #1c5196, #3a9682);
-  background-image: -o-linear-gradient(top, #1c5196, #3a9682);
-  background-image: linear-gradient(to bottom, #1c5196, #3a9682);
+  background-image: -webkit-linear-gradient(top, #eb409e, #f15757);
+  background-image: -moz-linear-gradient(top, #eb409e, #f15757);
+  background-image: -ms-linear-gradient(top, #eb409e, #9e505a);
+  background-image: -o-linear-gradient(top, #eb409e, #f15757);
+  background-image: linear-gradient(to bottom, #eb409e, #f15757);
   -webkit-border-radius: 12;
   -moz-border-radius: 12;
   border-radius: 12px;
@@ -193,4 +193,9 @@ div.navbar button {
   background-image: linear-gradient(to bottom, #2f228f, #46db84);
   text-decoration: none;
   color: rgb(250, 244, 244);
+}
+.logo{
+  border-radius: 15%;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
