@@ -13,7 +13,7 @@
     .box {
         position: absolute;
         margin: 150px 500px 750px 580px;
-        height: 725px;
+        height: 640px;
         width: 450px;
         border-radius: 25px;
         background-color: black ;
@@ -175,6 +175,7 @@ button {
 #kuchbhi {
   text-decoration: none;
   color: #F0F8FF;
+  margin: 0px 15px 0px 40px;
  
 }
 .homepage{
@@ -183,16 +184,32 @@ button {
 body{
   background-image: linear-gradient(to right, #90E0EF, #00B4D8,#0066b2,#0E49B5);
 }
+#west{
+  margin: 0px 15px 0px 40px;
+}
+#east{
+  margin: 0px 15px 0px 40px;
+}
+#north{
+  margin: 0px 15px 0px 40px;
+}
+#south{
+  margin: 0px 15px 0px 40px;
+}
+#delhi{
+  margin: 0px 15px 0px 40px;
+}
+.logo{
+    border-radius: 15%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
     <body>
         <div class="navbar">
-            <img
-              src="https://preview.pixlr.com/images/800wm/100/1/1001372063.jpg"
-              width="60px"
-              class="logo"
-            />
+          <img src="ZEE.png" width="70px" class="logo" height="50px">
             <a href="mainpage.html" class="homepage">Home</a>
             <a href="aboutus.html" class="gallery2">About Us</a>
       
@@ -202,13 +219,15 @@ body{
           </div>
     <div class="box">
     <img src="https://i.pinimg.com/736x/fc/ea/b4/fceab4432793b19697b27de9fa963e46.jpg" style="height:150px;width:150px;" class="ss" />
-        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Name" class="des" /><br>
-        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Username" class="des" /><br>
-        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Age" class="des" /><br> 
-        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Gender" class="des" /><br>
-        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Aadhar Card Number" class="des" /><br>
+    <span >
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Name" class="des" id="west"/><br>
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Username" class="des" id="east"/><br>
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Age" class="des" id="north"/><br> 
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Gender" class="des" id="south"/><br>
+        <input type="text" placeholder="&#xf007;&nbsp;&nbsp;Aadhar Card Number" class="des" id="delhi"/><br>
         
         <button type="submit value="submit"><a href="mainpage.html" id="kuchbhi">Register</a></button>
+    </span>
     </div>
     </body>
 </html>

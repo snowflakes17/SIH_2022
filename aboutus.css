@@ -18,7 +18,7 @@ a {
   
   body {
     margin: 0px;
-    background-image: linear-gradient(to right, #90E0EF, #00B4D8,#0066b2,#0E49B5);
+    background-image: linear-gradient(to right, #0E49B5,#0066b2, #00B4D8,#90E0EF);
   }
   
   h2 {
@@ -270,4 +270,9 @@ padding: 5px;
 }
 .homepage{
   padding: 12px 20px 15px 20px;
+}
+.logo{
+  border-radius: 15%;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
